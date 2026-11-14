@@ -1,0 +1,194 @@
+// DATA LIGA
+const liga = [
+  ["🇮🇩", "Liga 1 Indonesia", "Indonesia"],
+  ["🇮🇩", "Liga 2 Indonesia", "Indonesia"],
+  ["🌏", "AFC Champions League Elite", "Asia"],
+  ["🇯🇵", "J1 League Jepang", "Asia"],
+  ["🇰🇷", "K League Korea", "Asia"],
+  ["🇸🇦", "Saudi Pro League", "Asia"],
+  ["🏴", "Premier League", "Dunia"],
+  ["🇪🇸", "La Liga", "Dunia"],
+  ["🇮🇹", "Serie A", "Dunia"],
+  ["🇩🇪", "Bundesliga", "Dunia"],
+  ["🇫🇷", "Ligue 1", "Dunia"],
+  ["⭐", "UEFA Champions League", "Dunia"],
+  ["🌍", "FIFA World Cup", "Dunia"]
+];
+
+// DATA PERTANDINGAN CONTOH
+const jadwal = [
+  {
+    home: "Persija Jakarta",
+    away: "Persib Bandung",
+    liga: "Liga 1 Indonesia",
+    waktu: "19:00 WIB",
+    tanggal: "Contoh jadwal",
+    negara: "Indonesia"
+  },
+  {
+    home: "Bali United",
+    away: "Arema FC",
+    liga: "Liga 1 Indonesia",
+    waktu: "15:30 WIB",
+    tanggal: "Contoh jadwal",
+    negara: "Indonesia"
+  },
+  {
+    home: "Al Hilal",
+    away: "Al Ain",
+    liga: "AFC Champions League",
+    waktu: "20:00 WIB",
+    tanggal: "Contoh jadwal",
+    negara: "Asia"
+  },
+  {
+    home: "Arsenal",
+    away: "Liverpool",
+    liga: "Premier League",
+    waktu: "22:00 WIB",
+    tanggal: "Contoh jadwal",
+    negara: "Dunia"
+  },
+  {
+    home: "Real Madrid",
+    away: "Barcelona",
+    liga: "La Liga",
+    waktu: "02:00 WIB",
+    tanggal: "Contoh jadwal",
+    negara: "Dunia"
+  }
+];
+
+// DATA NEGARA
+const negara = [
+  ["🇮🇩", "Indonesia"],
+  ["🇯🇵", "Jepang"],
+  ["🇰🇷", "Korea Selatan"],
+  ["🇸🇦", "Arab Saudi"],
+  ["🇨🇳", "China"],
+  ["🇹🇭", "Thailand"],
+  ["🇻🇳", "Vietnam"],
+  ["🇲🇾", "Malaysia"],
+  ["🇮🇷", "Iran"],
+  ["🇶🇦", "Qatar"],
+  ["🇦🇺", "Australia"],
+  ["🇮🇳", "India"]
+];
+
+// DATA PEMAIN CONTOH
+const pemain = [
+  ["Jay Idzes", "🇮🇩", "Bek", "Indonesia"],
+  ["Rizky Ridho", "🇮🇩", "Bek", "Indonesia"],
+  ["Marselino Ferdinan", "🇮🇩", "Gelandang", "Indonesia"],
+  ["Calvin Verdonk", "🇮🇩", "Bek", "Indonesia"],
+  ["Son Heung-min", "🇰🇷", "Penyerang", "Korea Selatan"],
+  ["Takefusa Kubo", "🇯🇵", "Penyerang", "Jepang"],
+  ["Kaoru Mitoma", "🇯🇵", "Sayap", "Jepang"],
+  ["Mehdi Taremi", "🇮🇷", "Penyerang", "Iran"]
+];
+
+// NAVIGASI
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo(0, 0);
+}
+
+// TAMPILKAN LIGA
+function renderLiga() {
+  const cari = document
+    .getElementById("cariLiga")
+    ?.value.toLowerCase() || "";
+
+  const hasil = liga.filter(item =>
+    item[1].toLowerCase().includes(cari)
+  );
+
+  const html = hasil.map(item => `
+    <div class="card">
+      <h3>${item[0]} ${item[1]}</h3>
+      <p>Wilayah: ${item[2]}</p>
+    </div>
+  `).join("");
+
+  document.getElementById("ligaList").innerHTML =
+    html || "<p>Liga tidak ditemukan.</p>";
+}
+
+// TAMPILKAN JADWAL
+function renderJadwal() {
+  const cari = document
+    .getElementById("cariJadwal")
+    ?.value.toLowerCase() || "";
+
+  const hasil = jadwal.filter(item =>
+    (item.home + item.away + item.liga)
+      .toLowerCase().includes(cari)
+  );
+
+  document.getElementById("jadwalList").innerHTML =
+    hasil.map(item => `
+      <div class="match">
+        <h3>${item.home} ⚽ ${item.away}</h3>
+        <p>${item.liga}</p>
+        <p>${item.tanggal} • ${item.waktu}</p>
+      </div>
+    `).join("") || "<p>Jadwal tidak ditemukan.</p>";
+}
+
+// TAMPILKAN NEGARA
+function renderTim() {
+  document.getElementById("timList").innerHTML =
+    negara.map(item => `
+      <div class="card">
+        <h3>${item[0]} ${item[1]}</h3>
+        <p>Informasi sepak bola ${item[1]}.</p>
+      </div>
+    `).join("");
+}
+
+// TAMPILKAN PEMAIN
+function renderPemain() {
+  const cari = document
+    .getElementById("cariPemain")
+    ?.value.toLowerCase() || "";
+
+  const hasil = pemain.filter(item =>
+    item.join(" ").toLowerCase().includes(cari)
+  );
+
+  document.getElementById("pemainList").innerHTML =
+    hasil.map(item => `
+      <div class="card">
+        <h3>⚽ ${item[0]}</h3>
+        <p>${item[1]} ${item[3]}</p>
+        <p>Posisi: ${item[2]}</p>
+      </div>
+    `).join("") || "<p>Pemain tidak ditemukan.</p>";
+}
+
+// BERANDA
+document.getElementById("ligaHome").innerHTML =
+  liga.slice(0, 6).map(item => `
+    <div class="card">
+      <h3>${item[0]} ${item[1]}</h3>
+      <p>${item[2]}</p>
+    </div>
+  `).join("");
+
+document.getElementById("jadwalHome").innerHTML =
+  jadwal.slice(0, 3).map(item => `
+    <div class="match">
+      <h3>${item.home} ⚽ ${item.away}</h3>
+      <p>${item.liga} • ${item.waktu}</p>
+    </div>
+  `).join("");
+
+// JALANKAN SEMUA DATA
+renderLiga();
+renderJadwal();
+renderTim();
+renderPemain();
