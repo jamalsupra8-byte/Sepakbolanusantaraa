@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOLA NUSANTARA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">⚽ BOLA NUSANTARA</div>
+  <p>Indonesia • Asia • Dunia</p>
+</header>
+
+<nav>
+  <button onclick="showPage('beranda')">Beranda</button>
+  <button onclick="showPage('jadwal')">Jadwal</button>
+  <button onclick="showPage('liga')">Liga</button>
+  <button onclick="showPage('tim')">Tim & Negara</button>
+  <button onclick="showPage('pemain')">Pemain</button>
+</nav>
+
+<main>
+
+<section id="beranda" class="page">
+  <div class="hero">
+    <h1>Dunia Sepak Bola Ada di Sini!</h1>
+    <p>Ikuti sepak bola Indonesia, Asia, dan dunia.</p>
+    <button onclick="showPage('jadwal')">
+      Lihat Jadwal
+    </button>
+  </div>
+
+  <h2>Kompetisi Populer</h2>
+  <div id="ligaHome" class="grid"></div>
+
+  <h2>Pertandingan Pilihan</h2>
+  <div id="jadwalHome"></div>
+</section>
+
+<section id="jadwal" class="page hidden">
+  <h1>Jadwal Pertandingan</h1>
+  <input id="cariJadwal"
+    placeholder="Cari klub atau pertandingan..."
+    oninput="renderJadwal()">
+
+  <div id="jadwalList"></div>
+</section>
+
+<section id="liga" class="page hidden">
+  <h1>Liga Sepak Bola</h1>
+  <input id="cariLiga"
+    placeholder="Cari nama liga..."
+    oninput="renderLiga()">
+
+  <div id="ligaList" class="grid"></div>
+</section>
+
+<section id="tim" class="page hidden">
+  <h1>Tim dan Negara</h1>
+  <div id="timList" class="grid"></div>
+</section>
+
+<section id="pemain" class="page hidden">
+  <h1>Pemain Indonesia dan Asia</h1>
+  <input id="cariPemain"
+    placeholder="Cari nama pemain..."
+    oninput="renderPemain()">
+
+  <div id="pemainList" class="grid"></div>
+</section>
+
+</main>
+
+<footer>
+  <h3>⚽ BOLA NUSANTARA</h3>
+  <p>Satu Aplikasi untuk Semua Pecinta Sepak Bola.</p>
+  <p>© 2026 BOLA NUSANTARA</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
